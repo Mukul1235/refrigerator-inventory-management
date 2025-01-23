@@ -1,0 +1,24 @@
+/* General styles for the ManageProducts component */
+.manage-products-container {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: #f4f6f8;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 40px auto;
+    text-align: center;
+    border: 2px solid #e0e0e0;
+  }
+  
+  /* Styling for the heading */
+  .manage-products-container h1 {
+    color: #2d3436;
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+  }
+  
+  /* Add spacing between child components */
+  .manage-products-container > * {
+    margin-top: 20px;
+  }

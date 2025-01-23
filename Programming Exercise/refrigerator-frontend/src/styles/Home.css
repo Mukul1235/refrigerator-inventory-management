@@ -1,0 +1,26 @@
+/* General styles for the Home component */
+.home-container {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 600px;
+    margin: 40px auto;
+    border: 2px solid #ddd;
+  }
+  
+  /* Styling for the heading */
+  .home-container h1 {
+    color: #2c3e50;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  
+  /* Styling for the paragraph */
+  .home-container p {
+    color: #7f8c8d;
+    font-size: 1.2rem;
+    line-height: 1.6;
+  }

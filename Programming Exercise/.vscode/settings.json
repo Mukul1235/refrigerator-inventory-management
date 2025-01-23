@@ -1,0 +1,12 @@
+{
+    "files.associations": {
+        "*html": "html",
+        "*njk": "html",
+        "index.html": "html",
+        "*.css": "css",
+        "App.js": "javascriptreact",
+        "*.py": "python",
+        "*.cpp": "cpp",
+        "stack": "cpp"
+    }
+}
