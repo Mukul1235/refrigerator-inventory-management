@@ -1,70 +1,166 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Refrigerator App
 
-## Available Scripts
+A full-stack application to manage products in a refrigerator. The app allows users to insert, consume, and monitor items, keep track of expiration dates, and generate shopping lists using machine learning.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Stage 1: Basic Product Management
+- **Insert Items**: Add products to the refrigerator with a quantity and unit.
+- **Consume Items**: Update how much of a product is used (e.g., 250g vegetables or half a liter of milk).
+- **Status Check**: Track the current quantity of each item.
+- **History Log**: View a history of purchases and consumption.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Stage 2: Expiration Management
+- **Expiration Alerts**: Notify users of items nearing their expiration date.
+- **Auto-Removal**: Automatically deduct expired items from the inventory and prompt the user to remove them.
 
-### `npm test`
+### Stage 3: Smart Shopping List
+- **Machine Learning Integration**: 
+  - Analyze past shopping and consumption patterns.
+  - Recommend items for the shopping list to prevent stockouts.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## Tech Stack
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Frontend:
+- ReactJS (with React Router for navigation)
+- TailwindCSS (for styling)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Backend:
+- Django (REST API framework)
+- PostgreSQL (database)
+- Django REST Framework (DRF) for API endpoints
+- Django CORS Headers (to allow frontend-backend communication)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Machine Learning:
+- `scikit-learn` for analyzing consumption data and generating shopping lists.
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Installation Guide
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 1. Prerequisites
+Ensure you have the following installed:
+- **Node.js**: [Download Node.js](https://nodejs.org/)
+- **Python 3.8+**: [Download Python](https://www.python.org/)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 2. Clone the Repository
+```bash
+git clone <repository-url>
+cd refrigerator-app
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+### 3. Setting Up the Backend
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### Install Python dependencies:
+```bash
+cd backend
+pip install -r requirements.txt
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### Configure PostgreSQL:
+1. Create a database:
+   ```sql
+   CREATE DATABASE refrigerator_app;
+   ```
+2. Create a user:
+   ```sql
+   CREATE USER refrigerator_user WITH PASSWORD 'your_password';
+   ```
+3. Grant privileges:
+   ```sql
+   GRANT ALL PRIVILEGES ON DATABASE refrigerator_app TO refrigerator_user;
+   ```
 
-### Code Splitting
+#### Run migrations:
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+#### Start the backend server:
+```bash
+python manage.py runserver
+```
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### 4. Setting Up the Frontend
 
-### Making a Progressive Web App
+#### Install Node.js dependencies:
+```bash
+cd ../frontend
+npm install
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+#### Start the frontend server:
+```bash
+npm start
+```
 
-### Advanced Configuration
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### 5. Machine Learning Setup
 
-### Deployment
+1. Install ML dependencies:
+   ```bash
+   pip install pandas numpy scikit-learn
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+2. ML files are located in the `ml` directory. Ensure they are correctly linked to the backend.
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## API Endpoints
+
+| Endpoint                    | Method | Description                          |
+|-----------------------------|--------|--------------------------------------|
+| `/api/products/`            | GET    | Get all products in the refrigerator.|
+| `/api/products/add/`        | POST   | Add a new product.                   |
+| `/api/products/consume/`    | POST   | Consume a product.                   |
+| `/api/products/expired/`    | GET    | Get a list of expired items.         |
+| `/api/shopping-list/`       | GET    | Get ML-generated shopping suggestions.|
+
+---
+
+## Project Structure
+
+```
+refrigerator-app/
+├── backend/
+│   ├── api/                     # Django app with models and views
+│   ├── ml/                      # ML scripts and logic
+│   ├── manage.py                # Django management script
+│   ├── requirements.txt         # Python dependencies
+│   └── settings.py              # Backend configuration
+├── frontend/
+│   ├── src/
+│   │   ├── components/          # Reusable React components
+│   │   ├── pages/               # Page-level components
+│   │   ├── App.js               # Main React app file
+│   │   ├── index.js             # Entry point
+│   │   └── styles/              # TailwindCSS configuration
+│   ├── public/
+│   └── package.json             # Node.js dependencies
+└── README.md                    # Project documentation
+```
+
+---
+
+## To-Do
+
+1. Add unit tests for both frontend and backend.
+2. Improve ML model for better predictions.
+3. Deploy the app to the cloud.
+
+---
+
+## License
+
+This project is licensed under the MIT License. 
